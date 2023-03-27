@@ -57,11 +57,6 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(express.static("public"));
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send("Something broke!");
-});
-
 app.get("/movies", (req, res) => {
     res.json(topMovies);
 });
@@ -72,6 +67,11 @@ app.get("/", (req, res) => {
 
 app.get("/secreturl", (req, res) => {
     res.send("This is a secret url with super top-secret content.");
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send("Something broke!");
 });
 
 app.listen(8080, () => {
