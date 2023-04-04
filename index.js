@@ -187,12 +187,16 @@ let topMovies = [
 
 let users = [
     {
-        id: '1',
-        username: 'bryantortega'
+        id: "1",
+        username: "bryantortega",
+        email: "kalicorose@gmail.com",
+        favoriteMovies: ["Goodfellas", "The Dark Knight"]
     },
     {
-        id: '2',
-        username: 'sebastinkolman'
+        id: "2",
+        username: "sebastinkolman",
+        email: "sebastin@fakemail.com"
+        favoriteMovies: ["Snatch", "The Godfather"]
     },
 ]
 
@@ -201,12 +205,48 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(express.static("public"));
 
-app.get("/movies", (req, res) => {
+app.get("/topMovies", (req, res) => {
     res.json(topMovies);
 });
 
+app.get("/topMovies/:title", (req, res) => {
+    res.json("Successful GET request returning the information for the desired title.");
+});
+
+app.get("/topMovies/genres/:genreName", (req, res) => {
+    res.json("Successful GET request returning the information for the desired genre.");
+});
+
+app.get("/topMovies/directors/:directorName", (req, res) => {
+    res.json("Successful GET request returning the information for the desired director.");
+});
+
+app.post("/users", (req, res) => {
+    let newMovie = req.body;
+
+    topMovies.push(newMovie);
+    res.status(201).send(newMovie);
+});
+
+app.put("/users/:username", (req, res) => {
+    let user = users.find(user => {
+        return user.username === req.params.username;
+    });
+     if (user) {
+        user.classes[req.params.username] = parseInt(req.params.grade);
+        res.status(201).send(
+            "username was updated to " +
+                req.params.username
+        );
+    } else {
+        res.status(404).send(
+            "username " + req.params.username + " was not found."
+        );
+    }
+});
+
 app.get("/", (req, res) => {
-    res.send("A default textual response of my choosing.");
+    res.send("Welcome to myflix!");
 });
 
 app.get("/secreturl", (req, res) => {

@@ -68,7 +68,7 @@
                         Return data about a genre (description) by name/title
                         (e.g., “Thriller”)
                     </td>
-                    <td>/genres/genreName</td>
+                    <td>/topMovies/genres/genreName</td>
                     <td>GET</td>
                     <td>
                         a JSON object holding data about genre name and its
@@ -99,7 +99,7 @@
                 <tr>
                     <td>Allow users to update their user info (username)</td>
                     <td>/users/username</td>
-                    <td>PATCH</td>
+                    <td>PUT</td>
                     <td>
                         a JSON object holding updated information of a user
                         account
@@ -110,11 +110,11 @@
                         Allow users to add a movie to their list of favorites
                         (showing only a text that a movie has been added)
                     </td>
-                    <td>/users/username/topMovies/title</td>
+                    <td>/users/username/favoriteMovies/[title]</td>
                     <td>POST</td>
                     <td>
                         a JSON object containing information of a user account
-                        with title added
+                        with movie title added
                     </td>
                 </tr>
                 <tr>
@@ -123,7 +123,7 @@
                         favorites (showing only a text that a movie has been
                         removed)
                     </td>
-                    <td>/users/username/topMovies/title</td>
+                    <td>/users/username/favoriteMovies/[title]</td>
                     <td>DELETE</td>
                     <td>
                         a JSON object holding updated data with a requested
