@@ -1,7 +1,9 @@
 const express = require("express"),
     morgan = require("morgan"),
     fs = require("fs"),
-    path = require("path");
+    path = require("path"), 
+    uuid = require("uuid"),
+    bodyParser = require("body-parser");
 
 const app = express();
 // create a write stream (in append mode)
