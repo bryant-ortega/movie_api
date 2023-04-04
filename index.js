@@ -27,7 +27,7 @@ let topMovies = [
             birthyear: "1939"
         },
         imageUrl: "https://en.wikipedia.org/wiki/The_Godfather#/media/File:Godfather_ver1.jpg"
-        year: "1972"
+        year: "1972",
         featured: "Yes"
     },
     {
@@ -44,7 +44,7 @@ let topMovies = [
             birthyear: "1939"
         },
         imageUrl: "https://en.wikipedia.org/wiki/The_Godfather_Part_II#/media/File:Godfather_part_ii.jpg"
-        year: "1974"
+        year: "1974",
         featured: "Yes"
     },
     {
@@ -61,7 +61,7 @@ let topMovies = [
             birthyear: "1961"
         },
         imageUrl: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers#/media/File:Lord_of_the_Rings_-_The_Two_Towers_(2002).jpg"
-        year: "2002"
+        year: "2002",
         featured: "Yes"
     },
     {
@@ -75,10 +75,10 @@ let topMovies = [
         directors: {
             directorName: "Peter Jackson",
             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
-            birthyear: "1961"
+            birthyear: "1961",
         },
         imageUrl: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King#/media/File:The_Lord_of_the_Rings_-_The_Return_of_the_King_(2003).jpg"
-        year: "2003"
+        year: "2003",
         featured: "Yes"
     },
     {
@@ -95,7 +95,7 @@ let topMovies = [
             birthyear: "1961"
         },
         imageUrl: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring#/media/File:The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_(2001).jpg"
-        year: "2001"
+        year: "2001",
         featured: "Yes"
     },
     {
@@ -112,7 +112,7 @@ let topMovies = [
             birthyear: "1942"
         },
         imageUrl: "https://images.app.goo.gl/Jx5ymfdFqh7rP6U67"
-        year: "1990"
+        year: "1990",
         featured: "Yes"
     },
     {
@@ -129,7 +129,7 @@ let topMovies = [
             birthyear: "1968"
         },
         imageUrl: "https://en.wikipedia.org/wiki/Snatch_(film)#/media/File:Snatch_ver4.jpg"
-        year: "2001"
+        year: "2001",
         featured: "Yes"
     },
     {
@@ -146,7 +146,7 @@ let topMovies = [
             birthyear: "1970"
         },
         imageUrl: "https://en.wikipedia.org/wiki/The_Dark_Knight#/media/File:The_Dark_Knight_(2008_film).jpg"
-        year: "2008"
+        year: "2008",
         featured: "Yes"
     },
     {
@@ -163,7 +163,7 @@ let topMovies = [
             birthyear: "1963"
         },
         imageUrl: "https://en.wikipedia.org/wiki/Pulp_Fiction#/media/File:Pulp_Fiction_(1994)_poster.jpg"
-        year: "1994"
+        year: "1994",
         featured: "Yes"
     },
     {
@@ -195,7 +195,7 @@ let users = [
     {
         id: "2",
         username: "sebastinkolman",
-        email: "sebastin@fakemail.com"
+        email: "sebastin@fakemail.com",
         favoriteMovies: ["Snatch", "The Godfather"]
     },
 ]
