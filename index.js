@@ -30,7 +30,7 @@ let topMovies = [
     {
         title: "The Godfather II",
         description: "Part II juxtaposes two stories: that of Michael Corleone (played, as in The Godfather, by Al Pacino) in the years after he becomes head of the Corleone family business and that of his father, Vito Corleone, as a young man (portrayed by Robert De Niro).",
-          genre: {
+        genre: {
             name: "Crime Drama",
             description:
                 "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…"
@@ -44,7 +44,7 @@ let topMovies = [
     {
         title: "The Lord of the Rings: The Two Towers",
         description: "The surviving members of the Fellowship have split into three groups. Frodo and Sam face many perils on their continuing quest to save Middle-earth by destroying the One Ring in the fires of Mount Doom. Merry and Pippin escape from the Orcs and must convince the Ents to join the battle against evil.",
-          genre: {
+        genre: {
             name: "Fantasy Fiction",
             description:
                 "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world."
@@ -58,7 +58,7 @@ let topMovies = [
     {
         title: "The Lord of the Rings: The Return of the King",
         description: "The culmination of nearly 10 years' work and conclusion to Peter Jackson's epic trilogy based on the timeless J.R.R. Tolkien classic, "The Lord of the Rings: The Return of the King" presents the final confrontation between the forces of good and evil fighting for control of the future of Middle-earth.",
-          genre: {
+        genre: {
             name: "Fantasy Fiction",
             description:
                 "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world."
@@ -72,7 +72,7 @@ let topMovies = [
     {
         title: "The Lord of the Rings: The Fellowship of the Ring",
         description: "Sauron, the Dark Lord, has awakened and threatens to conquer Middle-earth. To stop this ancient evil once and for all, Frodo Baggins must destroy the One Ring in the fires of Mount Doom. Men, Hobbits, a wizard, an Elf, and a Dwarf form a fellowship to help him on his quest.",
-          genre: {
+        genre: {
             name: "Fantasy Fiction",
             description:
                 "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world."
@@ -85,58 +85,77 @@ let topMovies = [
     },
     {
         title: "Goodfellas",
-        genre: "Crime Drama",
-        director: "Martin Scorsese",
+        description: "The lowly, blue-collar side of New York's Italian mafia is explored in this crime biopic of wiseguy Henry Hill. As he makes his way from strapping young petty criminal, to big-time thief, to middle-aged cocaine addict and dealer, the film explores in detail the rules and traditions of organized crime.",
+        genre: {
+            name: "Crime Drama",
+            description:
+                "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…"
+        },
+        director: {
+           name: "Martin Scorsese",
+            bio: "American filmmaker known for his harsh, often violent depictions of American culture. From the 1970s Scorsese created an ambitious body of work that made him one of the most important filmmakers of the late 20th and early 21st centuries.",
+            birthyear: "1942"
+        },
     },
     {
         title: "Snatch",
-        genre: "Heist Comedy",
-        director: "Guy Ritchie",
+        description: "The story follows a group of gangsters, thieves, petty criminals, and smugglers who cross paths in the pursuit of a stolen diamond. The film features an impressive ensemble cast that includes Jason Statham, Dennis Farina, Vinnie Jones, and Brad Pitt; who all give great performances (especially Pitt).",
+        genre: {
+            name: "Heist Comedy",
+            description:
+                "The heist film or caper film is a subgenre of crime film focused on the planning, execution, and aftermath of a significant robbery."
+        },
+        director: {
+           name: "Guy Ritchie",
+            bio: "Born in Hatfield, Hertfordshire, UK. After watching Butch Cassidy and the Sundance Kid (1969) as a child, Guy realized that what he wanted to do was make films. He never attended film school, saying that the work of film school graduates was boring and unwatchable.",
+            birthyear: "1968"
+        },
     },
     {
         title: "The Dark Knight",
-        genre: "Action",
-        director: "Christopher Nolan",
+        description: "The plot follows the vigilante Batman, police lieutenant James Gordon, and district attorney Harvey Dent, who form an alliance to dismantle organized crime in Gotham City. Their efforts are derailed by the Joker, an anarchistic mastermind who seeks to test how far Batman will go to save the city from chaos.",
+        genre: {
+            name: "Action",
+            description:
+                "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats."
+        },
+        director: {
+           name: "Christopher Nolan",
+            bio: "Christopher Nolan is British film director and writer acclaimed for his noirish visual aesthetic and unconventional, often highly conceptual narratives. Nolan was raised by an American mother and a British father, and his family spent time in both Chicago and London.",
+            birthyear: "1970"
+        },
     },
     {
         title: "Pulp Fiction",
-        genre: "Crime Drama",
-        director: "Quentin Tarantino",
+        description: "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+        genre: {
+            name: "Crime Film",
+            description:
+                "Crime films, in the broadest sense, is a film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection."
+        },
+        director: {
+           name: "Quentin Tarantino",
+            bio: "Quentin Tarantino, in full Quentin Jerome Tarantino, (born March 27, 1963, Knoxville, Tennessee, U.S.), American director and screenwriter whose films are noted for their stylized violence, razor-sharp dialogue, and fascination with film and pop culture.",
+            birthyear: "1963"
+        },
     },
     {
         title: "Amadeus",
-        genre: "Musical Drama",
-        director: "Milos Forman",
+        description: "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was deeply jealous of Mozart's talent and claimed to have murdered him.",
+        genre: {
+            name: "Period Biographical Drama",
+            description:
+                "A historical period drama is a work of art set in, or reminiscent of, an earlier time period. That time period may be general, like the 18th century, our centered around a specific date, and may span multiple eras."
+        },
+        director: {
+           name: "Miloš Forman",
+            bio: "Miloš Forman, (born February 18, in Čáslav, Czechoslovakia [now in the Czech Republic]—died April 13, 2018, Danbury, Connecticut, U.S.), Czech-born New Wave filmmaker who was known primarily for the distinctively American movies that he made after his immigration to the United States.",
+            birthyear: "1932"
+        },
     },
 ];
 
-let directors = [
-    {
-        name: "Francis Ford Coppola",
-        bio: 
-        birth: "1939",
-    },
-    {
-        name: "Peter Jackson",
-        bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
-        birth: "1961",
-    },
-    {
-        name: "Martin Scorsese",
-        bio: "American filmmaker known for his harsh, often violent depictions of American culture. From the 1970s Scorsese created an ambitious body of work that made him one of the most important filmmakers of the late 20th and early 21st centuries.",
-        birth: "1942",
-    },
-];
 
-let users = [
-    {
-        username: "bryantortega",
-    },
-       {
-        username: "sebastinkolman",
-    },
-
-];
 
 
 app.use(morgan("combined", { stream: accessLogStream }));
