@@ -26,6 +26,9 @@ let topMovies = [
             bio: "Born April 7, in Detroit, Coppola is descended from musically gifted Southern Italians who immigrated to New York in the early 20th century. His maternal grandfather, Francesco Pennino, was a songwriter, and his father, Carmine, first flute for the NBC Symphony under Toscanini.",
             birthyear: "1939"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/The_Godfather#/media/File:Godfather_ver1.jpg"
+        year: "1972"
+        featured: "Yes"
     },
     {
         title: "The Godfather II",
@@ -40,6 +43,9 @@ let topMovies = [
             bio: "Born April 7, in Detroit, Coppola is descended from musically gifted Southern Italians who immigrated to New York in the early 20th century. His maternal grandfather, Francesco Pennino, was a songwriter, and his father, Carmine, first flute for the NBC Symphony under Toscanini.",
             birthyear: "1939"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/The_Godfather_Part_II#/media/File:Godfather_part_ii.jpg"
+        year: "1974"
+        featured: "Yes"
     },
     {
         title: "The Lord of the Rings: The Two Towers",
@@ -54,6 +60,9 @@ let topMovies = [
             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
             birthyear: "1961"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers#/media/File:Lord_of_the_Rings_-_The_Two_Towers_(2002).jpg"
+        year: "2002"
+        featured: "Yes"
     },
     {
         title: "The Lord of the Rings: The Return of the King",
@@ -68,6 +77,9 @@ let topMovies = [
             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
             birthyear: "1961"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King#/media/File:The_Lord_of_the_Rings_-_The_Return_of_the_King_(2003).jpg"
+        year: "2003"
+        featured: "Yes"
     },
     {
         title: "The Lord of the Rings: The Fellowship of the Ring",
@@ -82,6 +94,9 @@ let topMovies = [
             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
             birthyear: "1961"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring#/media/File:The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_(2001).jpg"
+        year: "2001"
+        featured: "Yes"
     },
     {
         title: "Goodfellas",
@@ -96,6 +111,9 @@ let topMovies = [
             bio: "American filmmaker known for his harsh, often violent depictions of American culture. From the 1970s Scorsese created an ambitious body of work that made him one of the most important filmmakers of the late 20th and early 21st centuries.",
             birthyear: "1942"
         },
+        imageUrl: "https://images.app.goo.gl/Jx5ymfdFqh7rP6U67"
+        year: "1990"
+        featured: "Yes"
     },
     {
         title: "Snatch",
@@ -110,6 +128,9 @@ let topMovies = [
             bio: "Born in Hatfield, Hertfordshire, UK. After watching Butch Cassidy and the Sundance Kid (1969) as a child, Guy realized that what he wanted to do was make films. He never attended film school, saying that the work of film school graduates was boring and unwatchable.",
             birthyear: "1968"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/Snatch_(film)#/media/File:Snatch_ver4.jpg"
+        year: "2001"
+        featured: "Yes"
     },
     {
         title: "The Dark Knight",
@@ -124,6 +145,9 @@ let topMovies = [
             bio: "Christopher Nolan is British film director and writer acclaimed for his noirish visual aesthetic and unconventional, often highly conceptual narratives. Nolan was raised by an American mother and a British father, and his family spent time in both Chicago and London.",
             birthyear: "1970"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/The_Dark_Knight#/media/File:The_Dark_Knight_(2008_film).jpg"
+        year: "2008"
+        featured: "Yes"
     },
     {
         title: "Pulp Fiction",
@@ -138,6 +162,9 @@ let topMovies = [
             bio: "Quentin Tarantino, in full Quentin Jerome Tarantino, (born March 27, 1963, Knoxville, Tennessee, U.S.), American director and screenwriter whose films are noted for their stylized violence, razor-sharp dialogue, and fascination with film and pop culture.",
             birthyear: "1963"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/Pulp_Fiction#/media/File:Pulp_Fiction_(1994)_poster.jpg"
+        year: "1994"
+        featured: "Yes"
     },
     {
         title: "Amadeus",
@@ -152,10 +179,22 @@ let topMovies = [
             bio: "Miloš Forman, (born February 18, in Čáslav, Czechoslovakia [now in the Czech Republic]—died April 13, 2018, Danbury, Connecticut, U.S.), Czech-born New Wave filmmaker who was known primarily for the distinctively American movies that he made after his immigration to the United States.",
             birthyear: "1932"
         },
+        imageUrl: "https://en.wikipedia.org/wiki/Amadeus_(film)#/media/File:Amadeusmov.jpg"
+        year: "1984",
+        featured: "Yes"
     },
 ];
 
-
+let users = [
+    {
+        id: '1',
+        username: 'bryantortega'
+    },
+    {
+        id: '2',
+        username: 'sebastinkolman'
+    },
+]
 
 
 app.use(morgan("combined", { stream: accessLogStream }));
