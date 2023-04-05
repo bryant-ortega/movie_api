@@ -258,9 +258,14 @@ app.get("/topMovies/directors/:directorName", (req, res) => {
 app.post("/users", (req, res) => {
     let newUser = req.body;
 
-    newMovie.id = uuid.v4();
-    users.push(newUser);
-    res.status(201).send(newUser);
+    if (!newUser.username) {
+        const message = "Missing username in request body";
+        res.status(400).send(message);
+    } else {
+        newMovie.id = uuid.v4();
+        users.push(newUser);
+        res.status(201).send(newUser);
+    }
 });
 
 app.put("/users/:username", (req, res) => {
