@@ -287,11 +287,19 @@ app.post("/users", (req, res) => {
         res.status(400).send("Missing username in request body");
     }
 });
+//UPDATE username
+app.put("/users/:id", (req, res) => {
+    const { id } = req.params;
+    const updatedUser = req.body;
 
-app.put("/users/:username", (req, res) => {
-    res.json(
-        "Successful GET request returning the information for the desired director."
-    );
+    let user = users.find(user => user.id == id);
+
+    if (user) {
+        user.username = updatedUser.username;
+        res.status(200).json(user);
+    } else {
+        res.status(400).send("No such user");
+    }
 });
 
 app.delete("/users/:id", (req, res) => {
