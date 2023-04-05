@@ -40,3 +40,5 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [05/Apr/2023:00:26:35 +0000] "GET /topMovies/genres/Crime%20Drama HTTP/1.1" 200 73 "-" "PostmanRuntime/7.31.3"
 ::1 - - [05/Apr/2023:02:33:54 +0000] "GET /topMovies/directors/directorName HTTP/1.1" 200 76 "-" "PostmanRuntime/7.31.3"
 ::1 - - [05/Apr/2023:02:42:08 +0000] "POST /users HTTP/1.1" 201 - "-" "PostmanRuntime/7.31.3"
+::1 - - [05/Apr/2023:02:46:47 +0000] "POST /users HTTP/1.1" 201 - "-" "PostmanRuntime/7.31.3"
+::1 - - [05/Apr/2023:02:46:49 +0000] "POST /users HTTP/1.1" 201 - "-" "PostmanRuntime/7.31.3"
