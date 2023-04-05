@@ -12,6 +12,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
     flags: "a",
 });
 
+app.use(bodyParser.json());
+
 let topMovies = [
     {
         title: "The Godfather",
@@ -273,9 +275,9 @@ app.get("/topMovies/directors/:directorName", (req, res) => {
         res.status(400).send("No such director");
     }
 });
-
+//CREATE new User
 app.post("/users", (req, res) => {
-    let newUser = req.body;
+    const newUser = req.body;
 
     if (!newUser.username) {
         const message = "Missing username in request body";
