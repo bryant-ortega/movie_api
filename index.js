@@ -247,7 +247,7 @@ app.get("/topMovies/:title", (req, res) => {
         res.status(400).send("No such movie");
     }
 });
-
+//READ genre by name
 app.get("/topMovies/genres/:genreName", (req, res) => {
     const { genreName } = req.params;
     const genre = topMovies.find(
@@ -260,11 +260,18 @@ app.get("/topMovies/genres/:genreName", (req, res) => {
         res.status(400).send("No such genre");
     }
 });
-
+//READ director by name
 app.get("/topMovies/directors/:directorName", (req, res) => {
-    res.json(
-        "Successful GET request returning the information for the desired director."
-    );
+    const { directorName } = req.params;
+    const director = topMovies.find(
+        movie => movie.directors.directorName === directorName
+    ).directors;
+
+    if (director) {
+        return res.status(200).json(director);
+    } else {
+        res.status(400).send("No such director");
+    }
 });
 
 app.post("/users", (req, res) => {
