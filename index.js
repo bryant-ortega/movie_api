@@ -249,9 +249,16 @@ app.get("/topMovies/:title", (req, res) => {
 });
 
 app.get("/topMovies/genres/:genreName", (req, res) => {
-    res.json(
-        "Successful GET request returning the information for the desired genre."
-    );
+    const { genreName } = req.params;
+    const genre = topMovies.find(
+        movie => movie.genres.genreName === genreName
+    ).genres;
+
+    if (genre) {
+        return res.status(200).json(genre);
+    } else {
+        res.status(400).send("No such genre");
+    }
 });
 
 app.get("/topMovies/directors/:directorName", (req, res) => {
