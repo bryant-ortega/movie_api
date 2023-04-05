@@ -333,6 +333,20 @@ app.delete("/users/:id/:movieTitle", (req, res) => {
         res.status(400).send("No such user");
     }
 });
+//DELETE user
+app.delete("/users/:id", (req, res) => {
+    const { id } = req.params;
+
+    let user = users.find(user => user.id == id);
+
+    if (user) {
+        users = users.filter( user => user.id != id);
+        res.json(users)
+        //res.status(200).send("The movie has been successfully removed from the user's favorites.");
+    } else {
+        res.status(400).send("No such user");
+    }
+});
 
 app.get("/", (req, res) => {
     res.send("Welcome to myflix!");
