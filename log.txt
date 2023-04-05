@@ -78,3 +78,4 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [05/Apr/2023:05:02:56 +0000] "POST /users/1/Interstellar HTTP/1.1" 200 50 "-" "PostmanRuntime/7.31.3"
 ::1 - - [05/Apr/2023:05:08:13 +0000] "POST /users/1/Interstellar HTTP/1.1" 200 62 "-" "PostmanRuntime/7.31.3"
 ::1 - - [05/Apr/2023:05:16:24 +0000] "DELETE /users/2/Snatch HTTP/1.1" 404 156 "-" "PostmanRuntime/7.31.3"
+::1 - - [05/Apr/2023:05:17:53 +0000] "DELETE /users/2/Snatch HTTP/1.1" 200 66 "-" "PostmanRuntime/7.31.3"
