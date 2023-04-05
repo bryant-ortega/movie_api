@@ -301,6 +301,19 @@ app.put("/users/:id", (req, res) => {
         res.status(400).send("No such user");
     }
 });
+//CREATE
+app.post("/users/:id/:movieTitle", (req, res) => {
+    const { id, movieTitle } = req.params;
+
+    let user = users.find(user => user.id == id);
+
+    if (user) {
+        user.favoriteMovies.push(movieTitle);
+        res.status(200).json(user);
+    } else {
+        res.status(400).send("No such user");
+    }
+});
 
 app.delete("/users/:id", (req, res) => {
     let student = students.find(student => {
