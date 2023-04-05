@@ -256,10 +256,11 @@ app.get("/topMovies/directors/:directorName", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-    let newMovie = req.body;
+    let newUser = req.body;
 
-    topMovies.push(newMovie);
-    res.status(201).send(newMovie);
+    newMovie.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
 });
 
 app.put("/users/:username", (req, res) => {

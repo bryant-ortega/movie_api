@@ -35,3 +35,6 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [24/Mar/2023:23:28:10 +0000] "GET /movies HTTP/1.1" 200 631 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
 ::1 - - [25/Mar/2023:00:00:11 +0000] "GET / HTTP/1.1" 200 42 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
 ::ffff:127.0.0.1 - - [25/Mar/2023:00:13:11 +0000] "GET /secreturl HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [05/Apr/2023:00:19:46 +0000] "GET /topMovies HTTP/1.1" 200 10686 "-" "PostmanRuntime/7.31.3"
+::1 - - [05/Apr/2023:00:24:32 +0000] "GET /topMovies/Snatch HTTP/1.1" 200 73 "-" "PostmanRuntime/7.31.3"
+::1 - - [05/Apr/2023:00:26:35 +0000] "GET /topMovies/genres/Crime%20Drama HTTP/1.1" 200 73 "-" "PostmanRuntime/7.31.3"
