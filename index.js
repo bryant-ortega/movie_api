@@ -238,9 +238,14 @@ app.get("/topMovies", (req, res) => {
 });
 
 app.get("/topMovies/:title", (req, res) => {
-    res.json(
-        "Successful GET request returning the information for the desired title."
-    );
+    const { title } = req.params;
+    const movie = topMovies.find(movie => movie.title === title);
+
+    if (movie) {
+        return res.status(200).json(movie);
+    } else {
+        res.status(400).send("No such movie");
+    }
 });
 
 app.get("/topMovies/genres/:genreName", (req, res) => {
@@ -272,6 +277,19 @@ app.put("/users/:username", (req, res) => {
     res.json(
         "Successful GET request returning the information for the desired director."
     );
+});
+
+app.delete("/users/:id", (req, res) => {
+    let student = students.find(student => {
+        return student.id === req.params.id;
+    });
+
+    if (student) {
+        students = students.filter(obj => {
+            return obj.id !== req.params.id;
+        });
+        res.status(201).send("Student " + req.params.id + " was deleted.");
+    }
 });
 
 app.get("/", (req, res) => {
