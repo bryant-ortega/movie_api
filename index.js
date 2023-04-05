@@ -301,7 +301,7 @@ app.put("/users/:id", (req, res) => {
         res.status(400).send("No such user");
     }
 });
-//CREATE
+//CREATE new movie as favorite
 app.post("/users/:id/:movieTitle", (req, res) => {
     const { id, movieTitle } = req.params;
 
@@ -316,17 +316,21 @@ app.post("/users/:id/:movieTitle", (req, res) => {
         res.status(400).send("No such user");
     }
 });
+//DELETE movie from list of favorites
+app.delete("/users/:id/:movieTitle", (req, res) => {
+    const { id, movieTitle } = req.params;
 
-app.delete("/users/:id", (req, res) => {
-    let student = students.find(student => {
-        return student.id === req.params.id;
-    });
+    let user = users.find(user => user.id == id);
 
-    if (student) {
-        students = students.filter(obj => {
-            return obj.id !== req.params.id;
-        });
-        res.status(201).send("Student " + req.params.id + " was deleted.");
+    if (user) {
+        user.favoriteMovies = user.favoriteMovies.filter(
+            title => title !== movieTitle
+        );
+        res.status(200).send(
+            "The movie has been successfully removed from the user's favorites."
+        );
+    } else {
+        res.status(400).send("No such user");
     }
 });
 
