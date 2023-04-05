@@ -310,9 +310,7 @@ app.post("/users/:id/:movieTitle", (req, res) => {
     if (user) {
         user.favoriteMovies.push(movieTitle);
         res.status(200).send(
-            "The movie has been added to " +
-                req.params.username +
-                "'s favorites."
+            "The movie has been successfully added to the user's favorites."
         );
     } else {
         res.status(400).send("No such user");
