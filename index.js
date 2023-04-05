@@ -262,24 +262,16 @@ app.post("/users", (req, res) => {
         const message = "Missing username in request body";
         res.status(400).send(message);
     } else {
-        newMovie.id = uuid.v4();
+        newUser.id = uuid.v4();
         users.push(newUser);
         res.status(201).send(newUser);
     }
 });
 
 app.put("/users/:username", (req, res) => {
-    let user = users.find(user => {
-        return user.username === req.params.username;
-    });
-    if (user) {
-        user.classes[req.params.username] = parseInt(req.params.grade);
-        res.status(201).send("username was updated to " + req.params.username);
-    } else {
-        res.status(404).send(
-            "username " + req.params.username + " was not found."
-        );
-    }
+    res.json(
+        "Successful GET request returning the information for the desired director."
+    );
 });
 
 app.get("/", (req, res) => {
