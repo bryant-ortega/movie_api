@@ -46,7 +46,7 @@
             <tbody>
                 <tr>
                     <td>Return a list of ALL movies to the user</td>
-                    <td>/topMovies</td>
+                    <td>/movies</td>
                     <td>GET</td>
                     <td>a JSON object holding data about all movies</td>
                 </tr>
@@ -56,7 +56,7 @@
                         whether it’s featured or not) about a single movie by
                         title to the user
                     </td>
-                    <td>/topMovies/title</td>
+                    <td>/movies/Title</td>
                     <td>GET</td>
                     <td>
                         a JSON object holding data about a single movie
@@ -65,10 +65,10 @@
                 </tr>
                 <tr>
                     <td>
-                        Return data about a genre (description) by name/title
+                        Return data about a Genre (Description) by Name
                         (e.g., “Thriller”)
                     </td>
-                    <td>/topMovies/genres/genreName</td>
+                    <td>/movies/Genre/Name</td>
                     <td>GET</td>
                     <td>
                         a JSON object holding data about genre name and its
@@ -77,10 +77,10 @@
                 </tr>
                 <tr>
                     <td>
-                        Return data about a director (bio, birth year, death
-                        year) by name
+                        Return data about a Director (Bio, Birth year, Death
+                        year) by Name
                     </td>
-                    <td>/topMovies/directors/directorName</td>
+                    <td>/movies/Director/Name</td>
                     <td>GET</td>
                     <td>
                         a JSON object holding data about director such as name,
@@ -97,8 +97,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Allow users to update their user info (username)</td>
-                    <td>/users/username</td>
+                    <td>Allow users to update their user info (Username)</td>
+                    <td>/users/Username</td>
                     <td>PUT</td>
                     <td>
                         a JSON object holding updated information of a user
@@ -110,7 +110,7 @@
                         Allow users to add a movie to their list of favorites
                         (showing only a text that a movie has been added)
                     </td>
-                    <td>/users/username/favoriteMovies/[title]</td>
+                    <td>/users/Username/FavoriteMovies/[ObjectId]</td>
                     <td>POST</td>
                     <td>
                         a JSON object containing information of a user account
@@ -123,7 +123,7 @@
                         favorites (showing only a text that a movie has been
                         removed)
                     </td>
-                    <td>/users/username/favoriteMovies/[title]</td>
+                    <td>/users/Username/FavoriteMovies/[ObjectId]</td>
                     <td>DELETE</td>
                     <td>
                         a JSON object holding updated data with a requested
@@ -135,7 +135,7 @@
                         Allow existing users to deregister (showing only a text
                         that a user email has been removed)
                     </td>
-                    <td>/users/username</td>
+                    <td>/users/Username</td>
                     <td>DELETE</td>
                     <td>
                         a text message indicating a user account was deleted

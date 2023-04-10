@@ -26,14 +26,14 @@ let topMovies = [
         },
         directors: {
             directorName: "Francis Ford Coppola",
-            bio: "Born April 7, in Detroit, Coppola is descended from musically gifted Southern Italians who immigrated to New York in the early 20th century. His maternal grandfather, Francesco Pennino, was a songwriter, and his father, Carmine, first flute for the NBC Symphony under Toscanini.",
+            bio: "Born April 7, in Detroit, American motion-picture director, writer, and producer whose films range from sweeping epics to small-scale character studies ",
             birthyear: "1939",
             deathyear: "N/A",
         },
         imageUrl:
             "https://en.wikipedia.org/wiki/The_Godfather#/media/File:Godfather_ver1.jpg",
         year: "1972",
-        featured: "Yes",
+        featured: False,
     },
     {
         title: "The Godfather II",
