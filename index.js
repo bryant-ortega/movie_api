@@ -12,6 +12,17 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
     flags: "a",
 });
 
+const mongoose = require("mongoose");
+const Models = require("./models.js");
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect("mongodb://localhost:27017/cfDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
 app.use(bodyParser.json());
 
 let topMovies = [
