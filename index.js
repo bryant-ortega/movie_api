@@ -172,7 +172,6 @@ app.put("/users/:Username", (req, res) => {
     );
 });
 
-
 // MONGOOSE Add a movie to a user's list of favorites
 app.post("/users/:Username/movies/:MovieID", (req, res) => {
     Users.findOneAndUpdate(
