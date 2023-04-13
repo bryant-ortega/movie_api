@@ -20,7 +20,7 @@ const Models = require("./models.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect("mongodb://localhost:27017/cfDB", {
+mongoose.connect("mongodb://localhost:127.0.0.1/cfDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
