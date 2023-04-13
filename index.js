@@ -20,10 +20,7 @@ const Models = require("./models.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect("mongodb://localhost:127.0.0.1/cfDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://127.0.0.1:27017/cfDB");
 
 app.use(bodyParser.json());
 
@@ -35,48 +32,47 @@ app.get("/topMovies", (req, res) => {
     res.json(topMovies);
 });
 
-// app.get("/topMovies/:title", (req, res) => {
-//     const { title } = req.params;
-//     const movie = topMovies.find(movie => movie.title === title);
-
-//     if (movie) {
-//         return res.status(200).json(movie);
-//     } else {
-//         res.status(400).send("No such movie");
-//     }
-// });
-// //READ genre by name
-// app.get("/topMovies/genres/:genreName", (req, res) => {
-//     const { genreName } = req.params;
-//     const genre = topMovies.find(
-//         movie => movie.genres.genreName === genreName
-//     ).genres;
-
-//     if (genre) {
-//         return res.status(200).json(genre);
-//     } else {
-//         res.status(400).send("No such genre");
-//     }
-// });
-// //READ director by name
-// app.get("/topMovies/directors/:directorName", (req, res) => {
-//     const { directorName } = req.params;
-//     const director = topMovies.find(
-//         movie => movie.directors.directorName === directorName
-//     ).directors;
-
-//     if (director) {
-//         return res.status(200).json(director);
-//     } else {
-//         res.status(400).send("No such director");
-//     }
-// });
-
 // MONGOOSE Get all movies
 app.get("/movies", (req, res) => {
     Movies.find()
         .then(movies => {
             res.status(201).json(movies);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+// MONGOOSE Get movie by title
+app.get("/movies/:Title", (req, res) => {
+    Movies.findOne({ Title: req.params.Title })
+        .then(movie => {
+            res.json(movie);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+// MONGOOSE Get Genre By Name
+app.get("/movies/genre/:Name", (req, res) => {
+    Movies.findOne({ "Genre.Name": req.params.genreName })
+        .then(movie => {
+            res.json(movie.Genre);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+//MONGOOSE Get Director Info By Name
+app.get("/movies/director/:Name", (req, res) => {
+    Movies.findOne({ "Director.Name": req.params.Name })
+        .then(movie => {
+            res.json(movie.Director);
         })
         .catch(err => {
             console.error(err);
