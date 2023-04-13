@@ -35,46 +35,46 @@ app.get("/topMovies", (req, res) => {
     res.json(topMovies);
 });
 
-app.get("/topMovies/:title", (req, res) => {
-    const { title } = req.params;
-    const movie = topMovies.find(movie => movie.title === title);
+// app.get("/topMovies/:title", (req, res) => {
+//     const { title } = req.params;
+//     const movie = topMovies.find(movie => movie.title === title);
 
-    if (movie) {
-        return res.status(200).json(movie);
-    } else {
-        res.status(400).send("No such movie");
-    }
-});
-//READ genre by name
-app.get("/topMovies/genres/:genreName", (req, res) => {
-    const { genreName } = req.params;
-    const genre = topMovies.find(
-        movie => movie.genres.genreName === genreName
-    ).genres;
+//     if (movie) {
+//         return res.status(200).json(movie);
+//     } else {
+//         res.status(400).send("No such movie");
+//     }
+// });
+// //READ genre by name
+// app.get("/topMovies/genres/:genreName", (req, res) => {
+//     const { genreName } = req.params;
+//     const genre = topMovies.find(
+//         movie => movie.genres.genreName === genreName
+//     ).genres;
 
-    if (genre) {
-        return res.status(200).json(genre);
-    } else {
-        res.status(400).send("No such genre");
-    }
-});
-//READ director by name
-app.get("/topMovies/directors/:directorName", (req, res) => {
-    const { directorName } = req.params;
-    const director = topMovies.find(
-        movie => movie.directors.directorName === directorName
-    ).directors;
+//     if (genre) {
+//         return res.status(200).json(genre);
+//     } else {
+//         res.status(400).send("No such genre");
+//     }
+// });
+// //READ director by name
+// app.get("/topMovies/directors/:directorName", (req, res) => {
+//     const { directorName } = req.params;
+//     const director = topMovies.find(
+//         movie => movie.directors.directorName === directorName
+//     ).directors;
 
-    if (director) {
-        return res.status(200).json(director);
-    } else {
-        res.status(400).send("No such director");
-    }
-});
+//     if (director) {
+//         return res.status(200).json(director);
+//     } else {
+//         res.status(400).send("No such director");
+//     }
+// });
 
 // MONGOOSE Get all movies
 app.get("/movies", (req, res) => {
-    Users.find()
+    Movies.find()
         .then(movies => {
             res.status(201).json(movies);
         })
@@ -138,7 +138,7 @@ app.get("/users/:Username", (req, res) => {
         });
 });
 
-// Update a user's info, by username
+// MONGOOSE Update a user's info, by username
 /* We’ll expect JSON in this format
 {
   Username: String,
@@ -172,20 +172,6 @@ app.put("/users/:Username", (req, res) => {
     );
 });
 
-//UPDATE username
-app.put("/users/:id", (req, res) => {
-    const { id } = req.params;
-    const updatedUser = req.body;
-
-    let user = users.find(user => user.id == id);
-
-    if (user) {
-        user.username = updatedUser.username;
-        res.status(200).json(user);
-    } else {
-        res.status(400).send("No such user");
-    }
-});
 
 // MONGOOSE Add a movie to a user's list of favorites
 app.post("/users/:Username/movies/:MovieID", (req, res) => {
@@ -225,7 +211,7 @@ app.delete("/users/:Username/movies/:MovieID", (req, res) => {
     );
 });
 
-//DELETE user
+//MONGOOSE DELETE user
 app.delete("/users/:Username", (req, res) => {
     Users.findOneAndRemove({ Username: req.params.Username })
         .then(user => {
