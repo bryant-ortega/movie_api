@@ -12,6 +12,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
     flags: "a",
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 
@@ -25,222 +27,207 @@ mongoose.connect("mongodb://localhost:27017/cfDB", {
 
 app.use(bodyParser.json());
 
-let topMovies = [
-    {
-        title: "The Godfather",
-        description:
-            "the first installment in The Godfather trilogy, chronicling the Corleone family under patriarch Vito Corleone (Brando) from 1945 to 1955. It focuses on the transformation of his youngest son, Michael Corleone (Pacino), from reluctant family outsider to ruthless mafia boss.",
-        genres: {
-            genreName: "Crime Drama",
-            description:
-                "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…",
-        },
-        directors: {
-            directorName: "Francis Ford Coppola",
-            bio: "Born April 7, in Detroit, American motion-picture director, writer, and producer whose films range from sweeping epics to small-scale character studies ",
-            birthyear: "1939",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/The_Godfather#/media/File:Godfather_ver1.jpg",
-        year: "1972",
-        featured: False,
-    },
-    {
-        title: "The Godfather II",
-        description:
-            "Part II juxtaposes two stories: that of Michael Corleone (played, as in The Godfather, by Al Pacino) in the years after he becomes head of the Corleone family business and that of his father, Vito Corleone, as a young man (portrayed by Robert De Niro).",
-        genres: {
-            genreName: "Crime Drama",
-            description:
-                "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…",
-        },
-        directors: {
-            directorName: "Francis Ford Coppola",
-            bio: "Born April 7, in Detroit, Coppola is descended from musically gifted Southern Italians who immigrated to New York in the early 20th century. His maternal grandfather, Francesco Pennino, was a songwriter, and his father, Carmine, first flute for the NBC Symphony under Toscanini.",
-            birthyear: "1939",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/The_Godfather_Part_II#/media/File:Godfather_part_ii.jpg",
-        year: "1974",
-        featured: "Yes",
-    },
-    {
-        title: "The Lord of the Rings: The Two Towers",
-        description:
-            "The surviving members of the Fellowship have split into three groups. Frodo and Sam face many perils on their continuing quest to save Middle-earth by destroying the One Ring in the fires of Mount Doom. Merry and Pippin escape from the Orcs and must convince the Ents to join the battle against evil.",
-        genres: {
-            genreName: "Fantasy Fiction",
-            description:
-                "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world.",
-        },
-        directors: {
-            directorName: "Peter Jackson",
-            bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
-            birthyear: "1961",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers#/media/File:Lord_of_the_Rings_-_The_Two_Towers_(2002).jpg",
-        year: "2002",
-        featured: "Yes",
-    },
-    {
-        title: "The Lord of the Rings: The Return of the King",
-        description:
-            "The culmination of nearly 10 years' work and conclusion to Peter Jackson/'s epic trilogy based on the timeless J.R.R. Tolkien classic, 'The Lord of the Rings: The Return of the King' presents the final confrontation between the forces of good and evil fighting for control of the future of Middle-earth.",
-        genres: {
-            genreName: "Fantasy Fiction",
-            description:
-                "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world.",
-        },
-        directors: {
-            directorName: "Peter Jackson",
-            bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
-            birthyear: "1961",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King#/media/File:The_Lord_of_the_Rings_-_The_Return_of_the_King_(2003).jpg",
-        year: "2003",
-        featured: "Yes",
-    },
-    {
-        title: "The Lord of the Rings: The Fellowship of the Ring",
-        description:
-            "Sauron, the Dark Lord, has awakened and threatens to conquer Middle-earth. To stop this ancient evil once and for all, Frodo Baggins must destroy the One Ring in the fires of Mount Doom. Men, Hobbits, a wizard, an Elf, and a Dwarf form a fellowship to help him on his quest.",
-        genres: {
-            genreName: "Fantasy Fiction",
-            description:
-                "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world.",
-        },
-        directors: {
-            directorName: "Peter Jackson",
-            bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
-            birthyear: "1961",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring#/media/File:The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_(2001).jpg",
-        year: "2001",
-        featured: "Yes",
-    },
-    {
-        title: "Goodfellas",
-        description:
-            "The lowly, blue-collar side of New York's Italian mafia is explored in this crime biopic of wiseguy Henry Hill. As he makes his way from strapping young petty criminal, to big-time thief, to middle-aged cocaine addict and dealer, the film explores in detail the rules and traditions of organized crime.",
-        genres: {
-            genreName: "Crime Drama",
-            description:
-                "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…",
-        },
-        directors: {
-            directorName: "Martin Scorsese",
-            bio: "American filmmaker known for his harsh, often violent depictions of American culture. From the 1970s Scorsese created an ambitious body of work that made him one of the most important filmmakers of the late 20th and early 21st centuries.",
-            birthyear: "1942",
-            deathyear: "N/A",
-        },
-        imageUrl: "https://images.app.goo.gl/Jx5ymfdFqh7rP6U67",
-        year: "1990",
-        featured: "Yes",
-    },
-    {
-        title: "Snatch",
-        description:
-            "The story follows a group of gangsters, thieves, petty criminals, and smugglers who cross paths in the pursuit of a stolen diamond. The film features an impressive ensemble cast that includes Jason Statham, Dennis Farina, Vinnie Jones, and Brad Pitt; who all give great performances (especially Pitt).",
-        genres: {
-            genreName: "Heist Comedy",
-            description:
-                "The heist film or caper film is a subgenre of crime film focused on the planning, execution, and aftermath of a significant robbery.",
-        },
-        directors: {
-            directorName: "Guy Ritchie",
-            bio: "Born in Hatfield, Hertfordshire, UK. After watching Butch Cassidy and the Sundance Kid (1969) as a child, Guy realized that what he wanted to do was make films. He never attended film school, saying that the work of film school graduates was boring and unwatchable.",
-            birthyear: "1968",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/Snatch_(film)#/media/File:Snatch_ver4.jpg",
-        year: "2001",
-        featured: "Yes",
-    },
-    {
-        title: "The Dark Knight",
-        description:
-            "The plot follows the vigilante Batman, police lieutenant James Gordon, and district attorney Harvey Dent, who form an alliance to dismantle organized crime in Gotham City. Their efforts are derailed by the Joker, an anarchistic mastermind who seeks to test how far Batman will go to save the city from chaos.",
-        genres: {
-            genreName: "Action",
-            description:
-                "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
-        },
-        directors: {
-            directorName: "Christopher Nolan",
-            bio: "Christopher Nolan is British film director and writer acclaimed for his noirish visual aesthetic and unconventional, often highly conceptual narratives. Nolan was raised by an American mother and a British father, and his family spent time in both Chicago and London.",
-            birthyear: "1970",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/The_Dark_Knight#/media/File:The_Dark_Knight_(2008_film).jpg",
-        year: "2008",
-        featured: "Yes",
-    },
-    {
-        title: "Pulp Fiction",
-        description:
-            "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-        genres: {
-            genreName: "Crime Film",
-            description:
-                "Crime films, in the broadest sense, is a film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection.",
-        },
-        directors: {
-            directorName: "Quentin Tarantino",
-            bio: "Quentin Tarantino, in full Quentin Jerome Tarantino, (born March 27, 1963, Knoxville, Tennessee, U.S.), American director and screenwriter whose films are noted for their stylized violence, razor-sharp dialogue, and fascination with film and pop culture.",
-            birthyear: "1963",
-            deathyear: "N/A",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/Pulp_Fiction#/media/File:Pulp_Fiction_(1994)_poster.jpg",
-        year: "1994",
-        featured: "Yes",
-    },
-    {
-        title: "Amadeus",
-        description:
-            "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was deeply jealous of Mozart's talent and claimed to have murdered him.",
-        genres: {
-            genreName: "Period Biographical Drama",
-            description:
-                "A historical period drama is a work of art set in, or reminiscent of, an earlier time period. That time period may be general, like the 18th century, our centered around a specific date, and may span multiple eras.",
-        },
-        directors: {
-            directorName: "Miloš Forman",
-            bio: "Miloš Forman, (born February 18, in Čáslav, Czechoslovakia [now in the Czech Republic]—died April 13, 2018, Danbury, Connecticut, U.S.), Czech-born New Wave filmmaker who was known primarily for the distinctively American movies that he made after his immigration to the United States.",
-            birthyear: "1932",
-            deathyear: "2018",
-        },
-        imageUrl:
-            "https://en.wikipedia.org/wiki/Amadeus_(film)#/media/File:Amadeusmov.jpg",
-        year: "1984",
-        featured: "Yes",
-    },
-];
-
-let users = [
-    {
-        id: "1",
-        username: "bryantortega",
-        email: "kalicorose@gmail.com",
-        favoriteMovies: ["Goodfellas", "The Dark Knight"],
-    },
-    {
-        id: "2",
-        username: "sebastinkolman",
-        email: "sebastin@fakemail.com",
-        favoriteMovies: ["Snatch", "The Godfather"],
-    },
-];
+// let topMovies = [
+//     {
+//         title: "The Godfather",
+//         description:
+//             "the first installment in The Godfather trilogy, chronicling the Corleone family under patriarch Vito Corleone (Brando) from 1945 to 1955. It focuses on the transformation of his youngest son, Michael Corleone (Pacino), from reluctant family outsider to ruthless mafia boss.",
+//         genres: {
+//             genreName: "Crime Drama",
+//             description:
+//                 "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…",
+//         },
+//         directors: {
+//             directorName: "Francis Ford Coppola",
+//             bio: "Born April 7, in Detroit, American motion-picture director, writer, and producer whose films range from sweeping epics to small-scale character studies ",
+//             birthyear: "1939",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/The_Godfather#/media/File:Godfather_ver1.jpg",
+//         year: "1972",
+//         featured: False,
+//     },
+//     {
+//         title: "The Godfather II",
+//         description:
+//             "Part II juxtaposes two stories: that of Michael Corleone (played, as in The Godfather, by Al Pacino) in the years after he becomes head of the Corleone family business and that of his father, Vito Corleone, as a young man (portrayed by Robert De Niro).",
+//         genres: {
+//             genreName: "Crime Drama",
+//             description:
+//                 "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…",
+//         },
+//         directors: {
+//             directorName: "Francis Ford Coppola",
+//             bio: "Born April 7, in Detroit, Coppola is descended from musically gifted Southern Italians who immigrated to New York in the early 20th century. His maternal grandfather, Francesco Pennino, was a songwriter, and his father, Carmine, first flute for the NBC Symphony under Toscanini.",
+//             birthyear: "1939",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/The_Godfather_Part_II#/media/File:Godfather_part_ii.jpg",
+//         year: "1974",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "The Lord of the Rings: The Two Towers",
+//         description:
+//             "The surviving members of the Fellowship have split into three groups. Frodo and Sam face many perils on their continuing quest to save Middle-earth by destroying the One Ring in the fires of Mount Doom. Merry and Pippin escape from the Orcs and must convince the Ents to join the battle against evil.",
+//         genres: {
+//             genreName: "Fantasy Fiction",
+//             description:
+//                 "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world.",
+//         },
+//         directors: {
+//             directorName: "Peter Jackson",
+//             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
+//             birthyear: "1961",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Two_Towers#/media/File:Lord_of_the_Rings_-_The_Two_Towers_(2002).jpg",
+//         year: "2002",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "The Lord of the Rings: The Return of the King",
+//         description:
+//             "The culmination of nearly 10 years' work and conclusion to Peter Jackson/'s epic trilogy based on the timeless J.R.R. Tolkien classic, 'The Lord of the Rings: The Return of the King' presents the final confrontation between the forces of good and evil fighting for control of the future of Middle-earth.",
+//         genres: {
+//             genreName: "Fantasy Fiction",
+//             description:
+//                 "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world.",
+//         },
+//         directors: {
+//             directorName: "Peter Jackson",
+//             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
+//             birthyear: "1961",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Return_of_the_King#/media/File:The_Lord_of_the_Rings_-_The_Return_of_the_King_(2003).jpg",
+//         year: "2003",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "The Lord of the Rings: The Fellowship of the Ring",
+//         description:
+//             "Sauron, the Dark Lord, has awakened and threatens to conquer Middle-earth. To stop this ancient evil once and for all, Frodo Baggins must destroy the One Ring in the fires of Mount Doom. Men, Hobbits, a wizard, an Elf, and a Dwarf form a fellowship to help him on his quest.",
+//         genres: {
+//             genreName: "Fantasy Fiction",
+//             description:
+//                 "Fantasy fiction is a genre of writing in which the plot could not happen in real life (as we know it, at least). Often, the plot involves magic or witchcraft and takes place on another planet or in another — undiscovered — dimension of this world.",
+//         },
+//         directors: {
+//             directorName: "Peter Jackson",
+//             bio: "Born in Wellington, New Zealand. Both his parents were immigrants from England. Jackson started his film-making career at a young age and made home movies on his parents' cameras. He never had any formal training, but he explored using a variety of cameras, seeing what worked and what didn't.",
+//             birthyear: "1961",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Fellowship_of_the_Ring#/media/File:The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_(2001).jpg",
+//         year: "2001",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "Goodfellas",
+//         description:
+//             "The lowly, blue-collar side of New York's Italian mafia is explored in this crime biopic of wiseguy Henry Hill. As he makes his way from strapping young petty criminal, to big-time thief, to middle-aged cocaine addict and dealer, the film explores in detail the rules and traditions of organized crime.",
+//         genres: {
+//             genreName: "Crime Drama",
+//             description:
+//                 "Crime Drama is a sub-genre of drama that focuses on crimes, the criminals that commit them and the police that catch them. There are many formats of Crime drama such as detective, forensic/medical, procedural etc…",
+//         },
+//         directors: {
+//             directorName: "Martin Scorsese",
+//             bio: "American filmmaker known for his harsh, often violent depictions of American culture. From the 1970s Scorsese created an ambitious body of work that made him one of the most important filmmakers of the late 20th and early 21st centuries.",
+//             birthyear: "1942",
+//             deathyear: "N/A",
+//         },
+//         imageUrl: "https://images.app.goo.gl/Jx5ymfdFqh7rP6U67",
+//         year: "1990",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "Snatch",
+//         description:
+//             "The story follows a group of gangsters, thieves, petty criminals, and smugglers who cross paths in the pursuit of a stolen diamond. The film features an impressive ensemble cast that includes Jason Statham, Dennis Farina, Vinnie Jones, and Brad Pitt; who all give great performances (especially Pitt).",
+//         genres: {
+//             genreName: "Heist Comedy",
+//             description:
+//                 "The heist film or caper film is a subgenre of crime film focused on the planning, execution, and aftermath of a significant robbery.",
+//         },
+//         directors: {
+//             directorName: "Guy Ritchie",
+//             bio: "Born in Hatfield, Hertfordshire, UK. After watching Butch Cassidy and the Sundance Kid (1969) as a child, Guy realized that what he wanted to do was make films. He never attended film school, saying that the work of film school graduates was boring and unwatchable.",
+//             birthyear: "1968",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/Snatch_(film)#/media/File:Snatch_ver4.jpg",
+//         year: "2001",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "The Dark Knight",
+//         description:
+//             "The plot follows the vigilante Batman, police lieutenant James Gordon, and district attorney Harvey Dent, who form an alliance to dismantle organized crime in Gotham City. Their efforts are derailed by the Joker, an anarchistic mastermind who seeks to test how far Batman will go to save the city from chaos.",
+//         genres: {
+//             genreName: "Action",
+//             description:
+//                 "Action film is a film genre in which the protagonist is thrust into a series of events that typically involve violence and physical feats.",
+//         },
+//         directors: {
+//             directorName: "Christopher Nolan",
+//             bio: "Christopher Nolan is British film director and writer acclaimed for his noirish visual aesthetic and unconventional, often highly conceptual narratives. Nolan was raised by an American mother and a British father, and his family spent time in both Chicago and London.",
+//             birthyear: "1970",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/The_Dark_Knight#/media/File:The_Dark_Knight_(2008_film).jpg",
+//         year: "2008",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "Pulp Fiction",
+//         description:
+//             "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+//         genres: {
+//             genreName: "Crime Film",
+//             description:
+//                 "Crime films, in the broadest sense, is a film genre inspired by and analogous to the crime fiction literary genre. Films of this genre generally involve various aspects of crime and its detection.",
+//         },
+//         directors: {
+//             directorName: "Quentin Tarantino",
+//             bio: "Quentin Tarantino, in full Quentin Jerome Tarantino, (born March 27, 1963, Knoxville, Tennessee, U.S.), American director and screenwriter whose films are noted for their stylized violence, razor-sharp dialogue, and fascination with film and pop culture.",
+//             birthyear: "1963",
+//             deathyear: "N/A",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/Pulp_Fiction#/media/File:Pulp_Fiction_(1994)_poster.jpg",
+//         year: "1994",
+//         featured: "Yes",
+//     },
+//     {
+//         title: "Amadeus",
+//         description:
+//             "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was deeply jealous of Mozart's talent and claimed to have murdered him.",
+//         genres: {
+//             genreName: "Period Biographical Drama",
+//             description:
+//                 "A historical period drama is a work of art set in, or reminiscent of, an earlier time period. That time period may be general, like the 18th century, our centered around a specific date, and may span multiple eras.",
+//         },
+//         directors: {
+//             directorName: "Miloš Forman",
+//             bio: "Miloš Forman, (born February 18, in Čáslav, Czechoslovakia [now in the Czech Republic]—died April 13, 2018, Danbury, Connecticut, U.S.), Czech-born New Wave filmmaker who was known primarily for the distinctively American movies that he made after his immigration to the United States.",
+//             birthyear: "1932",
+//             deathyear: "2018",
+//         },
+//         imageUrl:
+//             "https://en.wikipedia.org/wiki/Amadeus_(film)#/media/File:Amadeusmov.jpg",
+//         year: "1984",
+//         featured: "Yes",
+//     },
+// ];
 
 app.use(morgan("combined", { stream: accessLogStream }));
 
@@ -286,18 +273,107 @@ app.get("/topMovies/directors/:directorName", (req, res) => {
         res.status(400).send("No such director");
     }
 });
-//CREATE new User
-app.post("/users", (req, res) => {
-    const newUser = req.body;
 
-    if (newUser.username) {
-        newUser.id = uuid.v4();
-        users.push(newUser);
-        res.status(201).json(newUser);
-    } else {
-        res.status(400).send("Missing username in request body");
-    }
+// MONGOOSE Get all movies
+app.get("/movies", (req, res) => {
+    Users.find()
+        .then(movies => {
+            res.status(201).json(movies);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
+
+// MONGOOSE Add a user
+app.post("/users", (req, res) => {
+    Users.findOne({ Username: req.body.Username })
+        .then(user => {
+            if (user) {
+                return res
+                    .status(400)
+                    .send(req.body.Username + "already exists");
+            } else {
+                Users.create({
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Email: req.body.Email,
+                    Birthday: req.body.Birthday,
+                })
+                    .then(user => {
+                        res.status(201).json(user);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        res.status(500).send("Error: " + error);
+                    });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).send("Error: " + error);
+        });
+});
+
+// MONGOOSE Get all users
+app.get("/users", (req, res) => {
+    Users.find()
+        .then(users => {
+            res.status(201).json(users);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+// MONGOOSE Get a user by username
+app.get("/users/:Username", (req, res) => {
+    Users.findOne({ Username: req.params.Username })
+        .then(user => {
+            res.json(user);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
+});
+
+// Update a user's info, by username
+/* We’ll expect JSON in this format
+{
+  Username: String,
+  (required)
+  Password: String,
+  (required)
+  Email: String,
+  (required)
+  Birthday: Date
+}*/
+app.put("/users/:Username", (req, res) => {
+    Users.findOneAndUpdate(
+        { Username: req.params.Username },
+        {
+            $set: {
+                Username: req.body.Username,
+                Password: req.body.Password,
+                Email: req.body.Email,
+                Birthday: req.body.Birthday,
+            },
+        },
+        { new: true }, // This line makes sure that the updated document is returned
+        (err, updatedUser) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error: " + err);
+            } else {
+                res.json(updatedUser);
+            }
+        }
+    );
+});
+
 //UPDATE username
 app.put("/users/:id", (req, res) => {
     const { id } = req.params;
@@ -312,50 +388,59 @@ app.put("/users/:id", (req, res) => {
         res.status(400).send("No such user");
     }
 });
-//CREATE new movie as favorite
-app.post("/users/:id/:movieTitle", (req, res) => {
-    const { id, movieTitle } = req.params;
 
-    let user = users.find(user => user.id == id);
-
-    if (user) {
-        user.favoriteMovies.push(movieTitle);
-        res.status(200).send(
-            "The movie has been successfully added to the user's favorites."
-        );
-    } else {
-        res.status(400).send("No such user");
-    }
+// MONGOOSE Add a movie to a user's list of favorites
+app.post("/users/:Username/movies/:MovieID", (req, res) => {
+    Users.findOneAndUpdate(
+        { Username: req.params.Username },
+        {
+            $push: { FavoriteMovies: req.params.MovieID },
+        },
+        { new: true }, // This line makes sure that the updated document is returned
+        (err, updatedUser) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error: " + err);
+            } else {
+                res.json(updatedUser);
+            }
+        }
+    );
 });
-//DELETE movie from list of favorites
-app.delete("/users/:id/:movieTitle", (req, res) => {
-    const { id, movieTitle } = req.params;
 
-    let user = users.find(user => user.id == id);
-
-    if (user) {
-        user.favoriteMovies = user.favoriteMovies.filter(
-            title => title !== movieTitle
-        );
-        res.status(200).send(
-            "The movie has been successfully removed from the user's favorites."
-        );
-    } else {
-        res.status(400).send("No such user");
-    }
+//MONGOOSE Delete movie from list of favorites
+app.delete("/users/:Username/movies/:MovieID", (req, res) => {
+    Users.findOneAndUpdate(
+        { Username: req.params.Username },
+        {
+            $pull: { FavoriteMovies: req.params.MovieID },
+        },
+        { new: true }, // This line makes sure that the updated document is returned
+        (err, updatedUser) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send("Error: " + err);
+            } else {
+                res.json(updatedUser);
+            }
+        }
+    );
 });
+
 //DELETE user
-app.delete("/users/:id", (req, res) => {
-    const { id } = req.params;
-
-    let user = users.find( user => user.id == id);
-
-    if (user) {
-        users = users.filter( user => user.id != id);
-        res.status(200).send("user has been deleted.");
-    } else {
-        res.status(400).send("No such user");
-    }
+app.delete("/users/:Username", (req, res) => {
+    Users.findOneAndRemove({ Username: req.params.Username })
+        .then(user => {
+            if (!user) {
+                res.status(400).send(req.params.Username + " was not found");
+            } else {
+                res.status(200).send(req.params.Username + " was deleted.");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
 app.get("/", (req, res) => {
