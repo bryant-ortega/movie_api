@@ -156,16 +156,18 @@ app.put("/users/:Username", (req, res) => {
                 Birthday: req.body.Birthday,
             },
         },
-        { new: true }, // This line makes sure that the updated document is returned
-    ).then(user => {
-        if (!user) {
-            return res.status(400).send(req.params.Username + 'not found')
-        }
-        res.json(user)
-    }).catch(err => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-    });
+        { new: true } // This line makes sure that the updated document is returned
+    )
+        .then(user => {
+            if (!user) {
+                return res.status(400).send(req.params.Username + "not found");
+            }
+            res.json(user);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
 // MONGOOSE Add a movie to a user's list of favorites
@@ -176,7 +178,8 @@ app.post("/users/:Username/movies/:MovieID", (req, res) => {
             $push: { FavoriteMovies: req.params.MovieID },
         },
         { new: true } // This line makes sure that the updated document is returned
-    ).then(user => {
+    )
+        .then(user => {
             if (!user) {
                 return res.status(400).send(req.params.Username + "not found");
             }
@@ -195,16 +198,18 @@ app.delete("/users/:Username/movies/:MovieID", (req, res) => {
         {
             $pull: { FavoriteMovies: req.params.MovieID },
         },
-        { new: true }, // This line makes sure that the updated document is returned
-        (err, updatedUser) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Error: " + err);
-            } else {
-                res.json(updatedUser);
+        { new: true } // This line makes sure that the updated document is returned
+    )
+        .then(user => {
+            if (!user) {
+                return res.status(400).send(req.params.Username + "not found");
             }
-        }
-    );
+            res.json(user);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).send("Error: " + err);
+        });
 });
 
 //MONGOOSE DELETE user

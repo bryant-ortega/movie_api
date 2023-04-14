@@ -138,3 +138,5 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [13/Apr/2023:19:45:03 +0000] "PUT /users/bryantortega HTTP/1.1" 500 16 "-" "PostmanRuntime/7.32.2"
 ::1 - - [13/Apr/2023:19:47:54 +0000] "POST /users/bryantortega/movies/64338c560bd317ad36c628e4 HTTP/1.1" 500 16 "-" "PostmanRuntime/7.32.2"
 ::1 - - [14/Apr/2023:18:54:34 +0000] "PUT /users/bryantortega HTTP/1.1" 200 229 "-" "PostmanRuntime/7.32.2"
+::1 - - [14/Apr/2023:19:09:32 +0000] "POST /users/UPDATEDortega/movies/64338c560bd317ad36c628e4 HTTP/1.1" 200 256 "-" "PostmanRuntime/7.32.2"
+::1 - - [14/Apr/2023:19:12:10 +0000] "DELETE /users/UPDATEDortega/movies/643389a17461001bc5801dbf HTTP/1.1" 500 16 "-" "PostmanRuntime/7.32.2"
