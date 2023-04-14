@@ -157,15 +157,15 @@ app.put("/users/:Username", (req, res) => {
             },
         },
         { new: true }, // This line makes sure that the updated document is returned
-        (err, updatedUser) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send("Error: " + err);
-            } else {
-                res.json(updatedUser);
-            }
+    ).then(user => {
+        if (!user) {
+            return res.status(400).send(req.params.Username + 'not found')
         }
-    );
+        res.json(user)
+    }).catch(err => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+    });
 });
 
 // MONGOOSE Add a movie to a user's list of favorites
