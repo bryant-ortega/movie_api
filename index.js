@@ -58,7 +58,7 @@ app.get("/movies/:Title", (req, res) => {
 
 // MONGOOSE Get Genre By Name
 app.get("/movies/genre/:Name", (req, res) => {
-    Movies.findOne({ "Genre.Name": req.params.genreName })
+    Movies.findOne({ "Genre.Name": req.params.Name })
         .then(movie => {
             res.json(movie.Genre);
         })

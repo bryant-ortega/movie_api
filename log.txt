@@ -140,3 +140,6 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [14/Apr/2023:18:54:34 +0000] "PUT /users/bryantortega HTTP/1.1" 200 229 "-" "PostmanRuntime/7.32.2"
 ::1 - - [14/Apr/2023:19:09:32 +0000] "POST /users/UPDATEDortega/movies/64338c560bd317ad36c628e4 HTTP/1.1" 200 256 "-" "PostmanRuntime/7.32.2"
 ::1 - - [14/Apr/2023:19:12:10 +0000] "DELETE /users/UPDATEDortega/movies/643389a17461001bc5801dbf HTTP/1.1" 500 16 "-" "PostmanRuntime/7.32.2"
+::1 - - [14/Apr/2023:19:15:19 +0000] "DELETE /users/UPDATEDortega/movies/643389a17461001bc5801dbf HTTP/1.1" 200 229 "-" "PostmanRuntime/7.32.2"
+::1 - - [14/Apr/2023:19:16:14 +0000] "GET /movies/genre/Heist HTTP/1.1" 500 66 "-" "PostmanRuntime/7.32.2"
+::1 - - [15/Apr/2023:02:25:42 +0000] "GET /movies/genre/Heist HTTP/1.1" 200 165 "-" "PostmanRuntime/7.32.2"
