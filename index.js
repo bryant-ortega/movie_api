@@ -28,9 +28,9 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(express.static("public"));
 
-app.get("/topMovies", (req, res) => {
-    res.json(topMovies);
-});
+let auth = require("./auth")(app);
+const passport = require("passport");
+require("./passport");
 
 // MONGOOSE Get all movies
 app.get("/movies", (req, res) => {
