@@ -14,6 +14,10 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let auth = require("./auth")(app);
+const passport = require("passport");
+require("./passport");
+
 const mongoose = require("mongoose");
 const Models = require("./models.js");
 
@@ -27,10 +31,6 @@ app.use(bodyParser.json());
 app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(express.static("public"));
-
-let auth = require("./auth")(app);
-const passport = require("passport");
-require("./passport");
 
 // MONGOOSE Get all movies
 app.get(
