@@ -33,16 +33,20 @@ const passport = require("passport");
 require("./passport");
 
 // MONGOOSE Get all movies
-app.get("/movies", (req, res) => {
-    Movies.find()
-        .then(movies => {
-            res.status(201).json(movies);
-        })
-        .catch(err => {
-            console.error(err);
-            res.status(500).send("Error: " + err);
-        });
-});
+app.get(
+    "/movies",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        Movies.find()
+            .then(movies => {
+                res.status(201).json(movies);
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(500).send("Error: " + err);
+            });
+    }
+);
 
 // MONGOOSE Get movie by title
 app.get("/movies/:Title", (req, res) => {
