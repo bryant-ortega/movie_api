@@ -152,3 +152,6 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [16/Apr/2023:23:26:56 +0000] "POST /login?Username=bryantortega&Password=password77 HTTP/1.1" 400 36 "-" "PostmanRuntime/7.32.2"
 ::1 - - [16/Apr/2023:23:29:35 +0000] "POST /login?Username=bryantortega&Password=password77 HTTP/1.1" 400 36 "-" "PostmanRuntime/7.32.2"
 ::1 - - [16/Apr/2023:23:36:51 +0000] "POST /login?Username=bryantortega&Password=password77 HTTP/1.1" 400 36 "-" "PostmanRuntime/7.32.2"
+::1 - - [17/Apr/2023:02:09:13 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.32.2"
+::1 - - [17/Apr/2023:02:09:57 +0000] "GET /movies HTTP/1.1" 201 10561 "-" "PostmanRuntime/7.32.2"
+::1 - - [17/Apr/2023:02:21:16 +0000] "GET /movies/Snatch HTTP/1.1" 200 825 "-" "PostmanRuntime/7.32.2"
