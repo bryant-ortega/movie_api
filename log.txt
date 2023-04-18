@@ -185,3 +185,4 @@ Timestamp: Fri Mar 03 2023 22:26:38 GMT-0800 (Pacific Standard Time)
 ::1 - - [17/Apr/2023:21:44:17 +0000] "POST /users HTTP/1.1" 500 16 "-" "PostmanRuntime/7.32.2"
 ::1 - - [17/Apr/2023:21:47:47 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.32.2"
 ::1 - - [17/Apr/2023:21:49:26 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.32.2"
+::1 - - [17/Apr/2023:21:51:27 +0000] "POST /users HTTP/1.1" 500 16 "-" "PostmanRuntime/7.32.2"
