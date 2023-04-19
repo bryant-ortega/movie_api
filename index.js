@@ -20,7 +20,7 @@ const cors = require("cors");
 let allowedOrigins = [
     "http://localhost:8080",
     "http://testsite.com",
-    "https://git.heroku.com/ortega-myflix.git",
+    "https://ortega-myflix.herokuapp.com/",
 ];
 
 app.use(
