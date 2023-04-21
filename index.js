@@ -61,7 +61,7 @@ app.use(morgan("combined", { stream: accessLogStream }));
 
 app.use(express.static("public"));
 
-app.get("/", passport.authenticate("jwt", { session: false }), (req, res) => {
+app.get("/", (req, res) => {
     res.send("Welcome to myflix!");
 });
 
