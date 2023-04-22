@@ -21,7 +21,7 @@ module.exports = router => {
             { session: false },
             (error, user, info) => {
                 if (error || !user) {
-                    console.log(error)
+                    console.log("login error")
                     return res.status(400).json({
                         message: "Something is not right",
                         user: user,
