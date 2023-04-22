@@ -49,7 +49,7 @@ const Models = require("./models.js");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-//mongoose.connect("mongodb://127.0.0.1:27017/cfDB", { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb+srv://bryantortega:151Mark3rs@cluster0.as6zdur.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
