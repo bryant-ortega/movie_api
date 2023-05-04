@@ -21,6 +21,7 @@ let allowedOrigins = [
     "http://localhost:8080",
     "http://testsite.com",
     "https://ortega-myflix.herokuapp.com",
+    "http://localhost:1234",
 ];
 
 app.use(
