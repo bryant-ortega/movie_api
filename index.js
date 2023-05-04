@@ -67,7 +67,6 @@ app.get("/", (req, res) => {
 // MONGOOSE Get all movies
 app.get(
     "/movies",
-    passport.authenticate("jwt", { session: false }),
     (req, res) => {
         Movies.find()
             .then(movies => {
@@ -352,6 +351,3 @@ app.listen(port, "0.0.0.0", () => {
     console.log("Listening on Port " + port);
 });
 
-//TESTTESTTESTTESTTEST
-
-/////more testing
