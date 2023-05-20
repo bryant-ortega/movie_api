@@ -1,8 +1,11 @@
+// requirements + frameworks
 const express = require("express"),
     morgan = require("morgan"),
     fs = require("fs"),
     path = require("path"),
     uuid = require("uuid"),
+    mongoose = require("mongoose"),
+    Models = require("./models.js"),
     bodyParser = require("body-parser");
 
 const app = express();
@@ -43,9 +46,8 @@ let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
 
-const mongoose = require("mongoose");
-const Models = require("./models.js");
 
+// models
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -65,17 +67,14 @@ app.get("/", (req, res) => {
 });
 
 // MONGOOSE Get all movies
-app.get(
-    "/movies",
-
-    (req, res) => {
-        Movies.find()
-            .then(movies => {
-                res.status(201).json(movies);
-            })
-            .catch(err => {
-                console.error(err);
-                res.status(500).send("Error: " + err);
+app.get('/movies', passport.authenticate('jwt',{session:false}), (req, res) => {
+  Movies.find({ Movies: req.params.Movies })
+    .then((movies) => {
+      res.json(movies);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
             });
     }
 );
