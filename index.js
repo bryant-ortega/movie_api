@@ -44,6 +44,8 @@ app.use(
     })
 );
 
+app.use(bodyParser.json());
+
 let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
@@ -58,7 +60,7 @@ mongoose.connect(process.env.CONNECTION_URI, {
     useUnifiedTopology: true,
 });
 
-app.use(bodyParser.json());
+
 
 app.use(morgan("combined", { stream: accessLogStream }));
 
