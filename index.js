@@ -26,6 +26,7 @@ let allowedOrigins = [
     "https://ortega-myflix.herokuapp.com",
     "http://localhost:1234",
     "https://en.wikipedia.org",
+    "https://bryantortegamyflixapp.netlify.app/",
 ];
 
 app.use(
