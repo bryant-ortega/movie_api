@@ -28,6 +28,7 @@ let allowedOrigins = [
     "https://en.wikipedia.org",
     "https://bryantortegamyflixapp.netlify.app",
     "http://localhost:4200",
+    "https://bryant-ortega.github.io",
 ];
 
 app.use(
@@ -52,7 +53,6 @@ let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
 
-
 // models
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -61,8 +61,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
-
-
 
 app.use(morgan("combined", { stream: accessLogStream }));
 
@@ -73,14 +71,17 @@ app.get("/", (req, res) => {
 });
 
 // MONGOOSE Get all movies
-app.get('/movies', passport.authenticate('jwt',{session:false}), (req, res) => {
-  Movies.find({ Movies: req.params.Movies })
-    .then((movies) => {
-      res.json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
+app.get(
+    "/movies",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        Movies.find({ Movies: req.params.Movies })
+            .then(movies => {
+                res.json(movies);
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(500).send("Error: " + err);
             });
     }
 );
@@ -88,7 +89,7 @@ app.get('/movies', passport.authenticate('jwt',{session:false}), (req, res) => {
 // MONGOOSE Get movie by title
 app.get(
     "/movies/:Title",
-    
+
     (req, res) => {
         Movies.findOne({ Title: req.params.Title })
             .then(movie => {
@@ -142,7 +143,10 @@ app.post(
     //or use .isLength({min: 5}) which means
     //minimum value of 5 characters are only allowed
     [
-        check("Username", "Username 5 alphanumeric characters long is required").isLength({ min: 5 }),
+        check(
+            "Username",
+            "Username 5 alphanumeric characters long is required"
+        ).isLength({ min: 5 }),
         check(
             "Username",
             "Username contains non alphanumeric characters - not allowed."
@@ -356,4 +360,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
     console.log("Listening on Port " + port);
 });
-
